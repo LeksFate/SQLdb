@@ -1,0 +1,303 @@
+CREATE TABLE Workers (
+  Worker integer NOT NULL AUTO_INCREMENT,
+  Name varchar(45) NOT NULL,
+  Midname varchar(45) NOT NULL,
+  Surname varchar(45) NOT NULL,
+  Passp varchar(40) NOT NULL,
+  Datew date NOT NULL,
+  Wgend integer NOT NULL CHECK (Wgend = 0 or Wgend = 1),
+  primary key (Worker)
+);
+
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Иван', 'Васильевич', 'Грозный', '2345 134673', '1990/12/4', 1);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Петр', 'Генадьевич', 'Иванов', '2345 134673', '1990/11/14', 1);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Ольга', 'Андреевна', 'Петрова', '2345 134673', '1990/10/24', 0);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Наталья', 'Александровна', 'Васильева', '2345 134673', '1999/05/23', 0);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Дмитрий', 'Федорович', 'Альпин', '2345 134673', '1980/02/22', 1);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Алексей', 'Петрович', 'Диргин', '2345 134673', '1995/01/11', 1);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Екатерина', 'Александровна', 'Сонина', '2345 134673', '1991/12/8', 0);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Николай', 'Дмитриевич', 'Титов', '2345 134673', '1979/12/1', 1);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Татьяна', 'Ивановна', 'Косухина', '2345 134673', '1987/12/23', 0);
+INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES ('Никита', 'Алексеевич', 'Григорьев', '2345 134673', '1993/12/14', 1);
+
+-- SELECT * FROM Workers
+
+CREATE TABLE Archive (
+  IDprik integer NOT NULL UNIQUE,
+  Dateprikuv date NOT NULL,
+  primary key (IDprik)
+);
+
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (1, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (2, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (3, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (4, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (5, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (6, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (7, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (8, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (9, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (10, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (11, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (12, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (13, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (14, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (15, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (16, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (17, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (18, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (19, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (20, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (21, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (22, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (23, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (24, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (25, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (26, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (27, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (28, '2021/09/16');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (29, '2022/03/15');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (30, '2022/01/19');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (31, '2021/11/17');
+INSERT INTO Archive (IDprik, Dateprikuv) VALUES (101, '2021/09/16');
+
+-- select *from Archive;
+
+CREATE TABLE Otdel (
+  IDotdel INTEGER NOT NULL AUTO_INCREMENT,
+  Otdname varchar(100) NOT NULL,
+  Otdruk INTEGER NULL,
+  primary key (IDotdel),
+  foreign key (Otdruk) references Workers (Worker) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT INTO Otdel (Otdname, Otdruk) VALUES ('Информационный отдел', 4);
+INSERT INTO Otdel (Otdname, Otdruk) VALUES ('Отдел кадров', 7);
+INSERT INTO Otdel (Otdname, Otdruk) VALUES ('Бухгалтерия', 8);
+
+-- SELECT * FROM Otdel
+
+CREATE TABLE Posts (
+  IDstav INTEGER NOT NULL AUTO_INCREMENT,
+  Post varchar(100) NOT NULL,
+  Otdel integer NOT NULL,
+  Oklad decimal(10,2) NOT NULL,
+  Dlitotp integer NOT NULL,
+  Prikp integer NOT NULL,
+  primary key (IDstav),
+  foreign key (Prikp) references Archive (IDprik) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+-- insert
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Программист', 1, 45000.00, 28, 1);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Инженер', 1, 55000.00, 28, 2);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Главный пргораммист', 1, 75000.00, 28, 3);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Руководитель информационного отдела', 1, 100000.00, 28, 4);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Табельщик', 2, 45000.00, 28, 5);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Табельщик', 2, 45000.00, 28, 6);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Руководитель отдела кадров', 2, 85000.00, 28, 7);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Главный бухгалтер', 3, 95000.00, 28, 8);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Бухгалтер', 3, 55000.00, 28, 9);
+INSERT INTO Posts (Post, Otdel, Oklad, Dlitotp, Prikp) VALUES ('Бухгалтер', 3, 55000.00, 28, 10);
+
+
+-- fetch 
+-- SELECT * FROM Posts
+
+CREATE TABLE Space (
+  Nomdog integer NOT NULL AUTO_INCREMENT,
+  IDstavk integer NOT NULL,
+  Prikw integer NOT NULL,
+  Worker integer NOT NULL,
+  Dolstavk decimal(2,1) NOT NULL CHECK (Dolstavk > 0.0 and Dolstavk < 1.1),
+  primary key (Nomdog),
+  foreign key (IDstavk) references Posts (IDstav) ON UPDATE CASCADE ON DELETE CASCADE,
+  foreign key (Prikw) references Archive (IDprik) ON UPDATE NO ACTION ON DELETE NO ACTION,
+  foreign key (Worker) references Workers (Worker) ON UPDATE CASCADE ON DELETE NO ACTION
+);
+
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (3, 11, 1, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (1, 12, 2, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (2, 101, 2, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (2, 13, 3, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (4, 14, 4, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (10, 20, 5, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (9, 19, 6, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (8, 18, 7, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (7, 17, 8, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (6, 16, 9, 1.0);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (5, 15, 10, 1.0);
+
+-- SELECT * FROM Space
+
+CREATE TABLE Kids (
+  IDpar integer NOT NULL,
+  Kname varchar(45) NOT NULL,
+  Kmname varchar(45) NOT NULL,
+  Ksname varchar(45) NOT NULL,
+  Chgend integer NOT NULL CHECK (Chgend = 0 or Chgend = 1),
+  Datech date NOT NULL CHECK (datech > '2005/01/1'),
+  foreign key (IDpar) references Workers (Worker) ON UPDATE NO ACTION ON DELETE CASCADE
+);
+
+
+INSERT INTO Kids (IDpar, Kname, Kmname, Ksname, Chgend, Datech) VALUES (1, 'Федор', 'Иванович', 'Грозный', 1, '2021/04/12');
+INSERT INTO Kids (IDpar, Kname, Kmname, Ksname, Chgend, Datech) VALUES (3, 'Олеся', 'Валерьевна', 'Петрова', 0, '2020/11/22');
+INSERT INTO Kids (IDpar, Kname, Kmname, Ksname, Chgend, Datech) VALUES (6, 'Наталья', 'Алексеевна', 'Диргина', 0, '2023/01/27');
+INSERT INTO Kids (IDpar, Kname, Kmname, Ksname, Chgend, Datech) VALUES (9, 'Евгений', 'Александрович', 'Косухин', 1, '2020/09/10');
+
+-- SELECT * FROM Kids
+
+CREATE TABLE Otpusk (
+  Sotrotp integer NOT NULL,
+  Datebeg date NOT NULL,
+  Dateend date NOT NULL,
+  Otpkol integer NOT NULL,
+  Priko integer NOT NULL,
+  IDrukvod integer NOT NULL,
+  foreign key (Sotrotp) references Workers (Worker) ON UPDATE NO ACTION ON DELETE CASCADE,
+  foreign key (Priko) references Archive (IDprik) ON UPDATE NO ACTION ON DELETE NO ACTION,
+  foreign key (IDrukvod) references Workers (Worker) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+INSERT INTO Otpusk (Sotrotp, Datebeg, Dateend, Otpkol, Priko, IDrukvod) VALUES (2, '2023/02/3', '2023/02/17', 14, 21, 4);
+INSERT INTO Otpusk (Sotrotp, Datebeg, Dateend, Otpkol, Priko, IDrukvod) VALUES (6, '2023/04/13', '2023/04/27', 14, 22, 7);
+INSERT INTO Otpusk (Sotrotp, Datebeg, Dateend, Otpkol, Priko, IDrukvod) VALUES (10, '2023/03/5', '2023/03/19', 14, 23, 8);
+
+-- SELECT * FROM Otpusk
+
+CREATE TABLE Kom (
+  Sotr integer NOT NULL,
+  Mesnaz varchar(200) NOT NULL,
+  Dateout date NOT NULL,
+  Datein date NOT NULL,
+  Prikk integer NOT NULL,
+  IDrukvod integer NOT NULL,
+  foreign key (Sotr) references Workers (Worker) ON UPDATE NO ACTION ON DELETE CASCADE,
+  foreign key (Prikk) references Archive (IDprik) ON UPDATE NO ACTION ON DELETE NO ACTION,
+  foreign key (IDrukvod) references Workers (Worker) ON UPDATE NO ACTION ON DELETE NO ACTION
+);
+
+INSERT INTO Kom (Sotr, Mesnaz, Dateout, Datein, Prikk, IDrukvod) VALUES (1, 'Москва, АйтиКорп', '2023/03/11', '2023/03/27', 24, 4);
+INSERT INTO Kom (Sotr, Mesnaz, Dateout, Datein, Prikk, IDrukvod) VALUES (5, 'Нижний Новгород, ПайронИнк', '2023/05/15', '2023/05/26', 25, 8);
+INSERT INTO Kom (Sotr, Mesnaz, Dateout, Datein, Prikk, IDrukvod) VALUES (9, 'Курск, Айти46', '2023/04/1', '2023/04/19', 26, 7);
+
+-- SELECT * FROM Kom
+
+
+DELIMITER !! ;
+CREATE PROCEDURE add_card (IN _name varchar(45), _midname varchar(45), _surname varchar(45), _passp varchar(40), _datew date, _wgend integer)
+BEGIN
+DECLARE error_code varchar(40);
+
+IF EXISTS (SELECT W.Passp FROM Workers W where W.passp = _passp) then SET error_code = 'Этот человек уже есть в базе';
+ELSE INSERT INTO Workers (Name, Midname, Surname, Passp, Datew, Wgend) VALUES (_name, _midname, _surname, _passp, _datew, _wgend);
+END IF;
+
+SELECT error_code;
+
+END !!
+DELIMITER ; !!
+
+-- SELECT * FROM Workers;
+-- CALL add_card ('Виктор', 'Петрович', 'Чуков', '434324 3414', '1992/11/11', 1);
+-- SELECT * FROM Workers;
+
+DELIMITER !! ;
+CREATE PROCEDURE  otpravka (IN _sotrotp integer, _datebeg date, _dateend date, _otpkol integer, _priko integer, _prikdate date, _idrukvod integer)
+BEGIN
+DECLARE error_code varchar(40);
+
+IF EXISTS (SELECT A.IDprik FROM Archive A where A.IDprik = _priko) then SET error_code = 'Неверный номер приказа';
+ELSE INSERT INTO Archive (IDprik, Dateprikuv) VALUES (_priko, _prikdate);
+INSERT Otpusk (Sotrotp, Datebeg, Dateend, Otpkol, Priko, IDrukvod) VALUES (_sotrotp, _datebeg, _dateend, _otpkol, _priko, _idrukvod);
+END IF;
+
+SELECT error_code;
+
+END !!
+DELIMITER ; !!
+
+-- CALL otpravka (2, '2021/12/12', '22/01/12', 30, 261, '2021/12/1', 4);
+-- SELECT * FROM Archive;
+-- SELECT * FROM Otpusk;
+
+DELIMITER !! ;
+CREATE PROCEDURE add_kid (IN _IDpar integer, _Kname varchar(45), _Kmname varchar(45), _Ksname varchar(45), _Chgend integer, _Datech date)
+BEGIN
+
+INSERT INTO Kids (IDpar, Kname, Kmname, Ksname, Chgend, Datech) VALUES (_IDpar, _Kname, _Kmname, _Ksname, _Chgend, _Datech);
+
+END !!
+DELIMITER ; !!
+
+-- CALL add_kid (2, 'affaf', 'asfff', 'sdgsdg', 0, '2014/11/11');
+-- SELECT * FROM Kids;
+
+DELIMITER !! ;
+CREATE PROCEDURE del_dol (IN _post integer, _prik integer, _prikdate date)
+BEGIN 
+DECLARE error_code varchar(40);
+
+IF NOT EXISTS (SELECT P.IDstav FROM Posts P where P.IDstav = _post) then SET error_code = 'Такой должности нет';
+ELSE INSERT INTO Archive (IDprik, Dateprikuv) VALUES (_prik, _prikdate);
+DELETE FROM Posts P where P.IDstav = _post;
+END IF;
+
+SELECT error_code;
+
+END !!
+DELIMITER ; !!
+
+-- CALL del_dol (1, 681, '2023/12/12');
+-- SELECT * FROM Posts;
+-- SELECT * FROM Archive;
+
+DELIMITER !! ;
+CREATE PROCEDURE sel_nom (IN _prik integer)
+BEGIN
+DECLARE error_code varchar(40);
+
+IF NOT EXISTS (SELECT A.IDprik from Archive A where A.IDprik = _prik) then SET error_code = 'Такого приказа нет в базе';
+ELSE SELECT * FROM Archive where IDprik = _prik;
+END IF;
+
+SELECT error_code;
+
+END !!
+DELIMITER ; !!
+
+-- CALL sel_nom (100);
+
+DELIMITER !! ;
+CREATE PROCEDURE sel_date (IN _dateb date, _datee date)
+BEGIN
+DECLARE error_code varchar(40);
+
+SELECT * FROM Archive A where A.Dateprikuv >= _dateb and A.Dateprikuv <= _datee;
+
+END !!
+DELIMITER ; !!
+
+-- CALL sel_date ('2021/01/1', '2021/12/31')
+
+DELIMITER !! ;
+CREATE PROCEDURE add_space (IN _IDstavk integer, _Prikw integer, _Worker integer, _Dolstavk integer, _datep date)
+BEGIN
+DECLARE error_code varchar(40);
+
+IF EXISTS (SELECT * FROM Space S where (SELECT count(S.Worker) FROM Space S where S.Worker = _Worker) >= 2) then SET error_code = 'Этот человек занимает уже 2 должности';
+ELSE INSERT INTO Archive (IDprik, Dateprikuv) VALUES (_Prikw, _datep);
+INSERT INTO Space (IDstavk, Prikw, Worker, Dolstavk) VALUES (_IDstavk, _Prikw, _Worker, _Dolstavk);
+END IF;
+
+SELECT error_code;
+
+END !!
+DELIMITER ; !!
+
+call add_space (1, 586, 2, 1.0, '2023/06/14');
+SELECT * FROM Space;
+
+
+
